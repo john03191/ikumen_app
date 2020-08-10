@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>イクメン クエスト</title>
+    <%= favicon_link_tag('favicon.ico') %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <% if flash[:notice] %>
+    <div class="notification is-info">
+      <p class="notice"><%= notice %></p>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="notification is-danger">
+      <p class="alert"><%= alert %></p>
+    </div>
+  <% end %>
+
+  <section class="hero is-success">
+  <!-- Hero head: will stick at the top -->
+  <div class="hero-head">
+    <header class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            <%= link_to root_path, class: "navbar-item" do %>
+              <h1 class="title is-4" >イクメン クエスト</h1>
+            <% end %>
+          </a>
+          <span class="navbar-burger burger" data-target="navbarMenuHeroC">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenuHeroC" class="navbar-menu">
+          <div class="navbar-end">
+            <span class="navbar-item">
+              <%= link_to "投稿一覧", posts_path, class: "button is-success is-inverted" %>
+            </span>
+            <span class="navbar-item">
+              <%= link_to "イクメン一覧", users_path, class: "button is-success is-inverted" %>
+            </span>
+            <% if user_signed_in? %>
+            <p class="navbar-item">
+              <%= link_to user_path(current_user), class: "button is-success is-inverted" do %>
+                <%= "#{current_user.username} のページ" %>
+                <%= attachment_image_tag current_user, :profile_image, :fill, 70, 70, fallback: "no-image.png" %>
+              <% end %>
+            </p>
+            <span class="navbar-item">
+              <%= link_to "新規投稿", new_post_path %>
+            </span>
+            <span class="navbar-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            </span>
+            <% else %>
+              <span class="navbar-item">
+                <%= link_to 'ゲストログイン（閲覧用）', homes_guest_sign_in_path, method: :post %>
+              </span>
+              <span class="navbar-item">
+                <%= link_to "ログイン", new_user_session_path %>
+              </span>
+              <span class="navbar-item">
+                <%= link_to "新規登録", new_user_registration_path %>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+  </section>      
+    <%= yield %>
+  <footer class="footer">
+  <div class="content has-text-centered">
+      <%= image_tag("image01.jpg", size: '100x150') %>
+      <%= image_tag("rpg.png", size: '200x150') %>
+      <%= image_tag("boss.png", size: '200x150') %>
+    <p>
+      <strong>Ikumen Quest</strong> by <a href="https://makunblog.com">Masahide Danjyo</a>.
+Check this GitHub source code<a href="https://github.com/john03191">Git Hub mypage</a>
+    </p>
+    <hr>
+  </div>
+</footer>
+  </body>
+</html>
