@@ -68,7 +68,8 @@ gem "refile-mini_magick"
 gem "bulma-rails"
 gem 'rails-i18n'
 gem 'jquery-rails'
-gem "aws-sdk-s3", require: false
+gem 'refile-s3'
+gem 'dotenv-rails'
 
 group :production do
   gem 'pg'
