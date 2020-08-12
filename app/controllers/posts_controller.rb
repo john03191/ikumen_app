@@ -4,11 +4,14 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    # @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
     @users = User.all.order(id: "DESC").limit(10)
   end
 
   def show
     @like = Like.new
+    @comments = @post.comments
+    @comment = Comment.new
   end
 
   def new
