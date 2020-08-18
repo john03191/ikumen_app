@@ -2,46 +2,18 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        トップページ
+        投稿一覧
       </h1>
     </div>
   </div>
 </section>
 
 <div class="hero-body">
-  <div class="columns">
-    <div class="column is-3">
-      <i class="fas fa-crown">イクメンランキング</i>
-    <div class="card">
-      <% @users.each do |user| %>
-      <div class="user_rank">
-        <article class="media">
-          <figure class="media-left">
-            <p class="image is-64x64">
-              <%= attachment_image_tag user, :profile_image, :fill, 200, 200, fallback: "no-image.png" %>
-            </p>
-          </figure>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong><%= user.username %></strong> <small><%= user.email %></small>
-                <br>
-                いいね件数: 
-              </p>
-            </div>
-            <nav class="level is-mobile">
-              </div>
-            </nav>
-          </div>
-          <% end %>
-        </article>
-      </div>
-    </div>
     <div class="column">
       <section class="section">
         <div class="container">
           <div class="columns is-multiline">
-            <% @all_ranks.each do |post| %>
+            <% @posts.each do |post| %>
               <div class="column is-4">
                 <div class="card">
                   <div class="card-image">

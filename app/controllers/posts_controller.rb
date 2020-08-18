@@ -3,9 +3,12 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
 
   def index
-    @posts = Post.all
-    # @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
     @users = User.all.order(id: "DESC").limit(10)
+  end
+
+  def list
+    @posts = Post.all
   end
 
   def show

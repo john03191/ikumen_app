@@ -34,16 +34,9 @@
                 </tr>
                 <tr>
                   <td class="display-flex">
-                    <% if current_user.already_liked?(@post) %>
-                      <%= button_to post_like_path(@post), method: :delete do %>
-                        <span class="icon has-text-danger"><i class="fas fa-2x fa-heart"></i></span>
-                      <% end %>
-                    <% else %>
-                      <%= button_to post_likes_path(@post) do %>
-                        <i class="far fa-2x fa-heart"></i>
-                      <% end %>
-                    <% end %>
-                    <div class="like_font"><%= @post.likes.count %></div>
+                    <div id="likes_buttons_<% @post.id %>">
+                      <%= render partial: 'likes/like', locals: { post: @post} %>
+                    </div>
                   </td>
                 </tr>
               </table>
