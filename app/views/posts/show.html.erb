@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                   <td class="display-flex">
-                    <div id="likes_buttons_<% @post.id %>">
+                    <div id="likes_buttons_<%= @post.id %>">
                       <%= render partial: 'likes/like', locals: { post: @post} %>
                     </div>
                   </td>

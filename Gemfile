@@ -72,6 +72,7 @@ gem "bulma-rails"
 gem 'rails-i18n'
 gem 'jquery-rails'
 gem 'dotenv-rails'
+gem 'kaminari'
 
 group :production do
   gem 'pg'

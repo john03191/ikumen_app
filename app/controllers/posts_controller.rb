@@ -3,16 +3,16 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
 
   def index
-    @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
-    @users = User.all.order(id: "DESC").limit(10)
+    @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) DESC').limit(9).pluck(:post_id))
+    # @users = User.all.order(id: "DESC").limit(10)
+    @users = User.find(Post.group(:user_id).order('count(user_id) DESC').limit(10).pluck(:user_id))
   end
 
   def list
-    @posts = Post.all
+    @posts = Post.includes(:user).order("created_at DESC").page(params[:page]).per(9)
   end
 
   def show
-    @like = Like.new
     @comment = Comment.new
     @comments = @post.comments.order(created_at: :desc)
   end
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, :image, :comment)
+    params.require(:post).permit(:title, :body, :image, :comment, :post_id)
   end
 
   def set_post
