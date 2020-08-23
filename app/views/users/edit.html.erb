@@ -46,7 +46,8 @@
 
             <div class="field">
               <%= f.label :profile_image, "プロフィール画像", class: "label" %>
-              <%= f.attachment_field :profile_image, class: "input" %>
+                <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, fallback: "no-image.png" %>
+              <%= f.attachment_field :profile_image, class: "input image_form__contents__field hidden_file" %>
             </div>
 
             <%= f.submit "更新", class: "button is-success" %>
