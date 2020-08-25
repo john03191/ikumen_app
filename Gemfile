@@ -73,7 +73,6 @@ gem 'rails-i18n'
 gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'kaminari'
-gem "refile-s3"
 gem 'dotenv-rails'
 
 group :production do
